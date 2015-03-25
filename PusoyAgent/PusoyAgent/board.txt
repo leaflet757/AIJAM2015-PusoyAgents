@@ -1,0 +1,15 @@
+﻿-----------------------------------------------------
+|Players' Scores:  P1-10  P2-12  P3-8  P4-7         |
+|                                                   |
+|Cards In Hand:  P1-10  P2-12  P3-8  P4-7           |
+|                                                   |
+|                                                   |
+|Last Played Hand:                                  |
+|JS  KS  QS  AS  10S                                |
+|                                                   |
+|                                                   |
+|Player's Hand:                                     |
+|JS KS QS AS 10S JS KS QS AS 10S JS KS QS AS 10S    |
+-----------------------------------------------------
+
+Type in cards or pass: js ks 10s

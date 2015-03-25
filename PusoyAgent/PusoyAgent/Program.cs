@@ -10,8 +10,21 @@ namespace PusoyAgent
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("test");
-            Console.ReadKey();
+            PusoyGame game = new PusoyGame(4);
+            // game.loadContent();
+            game.initialize();
+            game.startGame();
+
+            int prevTime = 0;
+            while (game.IsRunning)
+            {
+                int deltaTime = System.DateTime.Now.Millisecond - prevTime;
+                prevTime = deltaTime;
+
+                game.draw();
+                game.update(deltaTime);
+            }
+            game.exitGame();
         }
     }
 }

@@ -24,6 +24,8 @@ namespace Global
     {
         private PusoyAgent.Player[] players;
 
+        public PusoyAgent.Player[] Players { get { return players; } }
+
         private PusoyAgent.Deck<PusoyAgent.Card> deck;
 
         private PusoyAgent.GameState currentGameState;
@@ -38,7 +40,7 @@ namespace Global
             return currentGameState;
         }
 
-        internal string getHandString(int playerID)
+        internal string getHandString(int playerIndex)
         {
             return "temp";
         }
@@ -51,6 +53,11 @@ namespace Global
         internal void initPlayerData(PusoyAgent.Player[] players)
         {
             this.players = players;
+        }
+
+        internal void updateGameState()
+        {
+            currentGameState = new PusoyAgent.GameState(this);
         }
     }
 }

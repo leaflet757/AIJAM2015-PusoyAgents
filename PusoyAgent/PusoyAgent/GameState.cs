@@ -25,17 +25,18 @@ namespace PusoyAgent
             throw new NotImplementedException();
         }
 
-        internal string getScore(int playerID)
+        internal int getScore(int playerIndex)
         {
-            throw new NotImplementedException();
+            return data.Players[playerIndex].getScore();
         }
 
-        internal string getHandCount(int playerID)
+        internal int getHandCount(int playerIndex)
         {
-            throw new NotImplementedException();
+            Hand hand = data.Players[playerIndex].getHand();
+            return hand.GetCount();
         }
 
-        internal string getLastPlayedHand()
+        internal Hand getLastPlayedHand()
         {
             throw new NotImplementedException();
         }
@@ -48,6 +49,11 @@ namespace PusoyAgent
         internal int getTurnStartIndex()
         {
             throw new NotImplementedException();
+        }
+
+        internal Player[] getPlayers()
+        {
+            return data.Players;
         }
     }
 }

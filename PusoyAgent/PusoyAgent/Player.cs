@@ -21,15 +21,32 @@ namespace PusoyAgent
             get { return _id; }
         }
 
+        private int _score;
+
+        private Hand _hand;
+
         public Player()
         {
-           _id = ++_playerCount;
+            _id = ++_playerCount;
+            _score = 0;
+
+            _hand = new Hand();
         }
 
 
         internal Card[] getAction(GameState currentGameState)
         {
             throw new NotImplementedException();
+        }
+
+        internal int getScore()
+        {
+            return _score;
+        }
+
+        internal Hand getHand()
+        {
+            return _hand;
         }
     }
 }

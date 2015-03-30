@@ -23,23 +23,20 @@ namespace PusoyAgent
             set { _playerCount = value; }
         }
 
-        private Player[] players;
-
-        private Deck<Card> deck;
-
         private Global.GameData gameData;
 
         public PusoyGame(int numPlayers)
         {
             _playerCount = numPlayers;
-            players = new Player[numPlayers];
-            deck = new Deck<Card>();
 
             gameData = new Global.GameData();
         }
 
         internal void initialize()
         {
+            Player[] players = new Player[PlayerCount];
+            Deck<Card> deck = new Deck<Card>();
+
             for (int i = 0; i < PlayerCount; i++)
             {
                 players[i] = new Player();
@@ -79,7 +76,7 @@ namespace PusoyAgent
 
         internal void startGame()
         {
-            
+            gameData.updateGameState();
             IsRunning = true;
         }
 
@@ -124,38 +121,32 @@ namespace PusoyAgent
         internal void draw()
         {
             GameState currentGameState = gameData.getGameState();
-            //GameState prevGameState = currentGameState.getPrevState();
 
             // Top Boarder
             Console.WriteLine("-----------------------------------------------------");
             // Player Scores
-            Console.Write("|Players' Scores:  P1-");
-            //Console.Write(currentGameState.getScore(players[0].ID));
-            Console.Write("  P2-");
-            //Console.Write(currentGameState.getScore(players[1].ID));
-            Console.Write("  P3-");
-            //Console.Write(currentGameState.getScore(players[2].ID));
-            Console.Write("  P4-");
-            //Console.Write(currentGameState.getScore(players[3].ID));
-            Console.WriteLine();            
+            Player[] players = currentGameState.getPlayers();
+            Console.Write("|Players' Scores:");
+            for (int i = 0; i < players.Length; i++)
+            {
+                Console.Write("  P" + (i + 1) + "-" + currentGameState.getScore(i));
+            }
+            Console.WriteLine();
             // cards in hand
-            Console.Write("|Cards In Hand:  ");
-            //Console.Write(currentGameState.getHandCount(players[0].ID));
-            Console.Write("  P2-");
-            //Console.Write(currentGameState.getHandCount(players[1].ID));
-            Console.Write("  P3-");
-            //Console.Write(currentGameState.getHandCount(players[2].ID));
-            Console.Write("  P4-");
-            //Console.Write(currentGameState.getHandCount(players[3].ID));
-            Console.WriteLine("\n|");            
+            Console.Write("|Cards In Hand:");
+            for (int i = 1; i < players.Length; i++)
+            {
+                Console.Write("  P" + (i + 1) + "-" + currentGameState.getHandCount(i));
+            }
+            Console.WriteLine("\n|");
             // Last played hand
             Console.WriteLine("|Last Played Hand:                                   ");
-            //Console.WriteLine(currentGameState.getLastPlayedHand());
+            Console.WriteLine(currentGameState.getLastPlayedHand());
             // blank space
             Console.WriteLine("|\n|");
             // players hand
             Console.WriteLine("|Player's Hand:");
-            //Console.WriteLine(gameData.getHandString(players[0].ID));
+            //Console.WriteLine(gameData.getHandString(0));
             // bottom boarder
             Console.WriteLine("-----------------------------------------------------");
         }
